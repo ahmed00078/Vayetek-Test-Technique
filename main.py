@@ -1,28 +1,32 @@
-def extract_calibration_value(line):
-    """Extract first and last digit from a line and combine them into a two-digit number."""
-    # Find all digits in the line
-    digits = [char for char in line if char.isdigit()]
+def extraire_valeur_etalonnage(ligne):
+    """Extraire le premier et le dernier chiffre d’une ligne et les combiner en un nombre à deux chiffres."""
+    # Trouver tous les chiffres de la ligne
+    vals = [char for char in ligne if char.isdigit()]
     
-    if not digits:
+    if not vals:
         return 0
         
-    # Combine first and last digit
-    return int(digits[0] + digits[-1])
+    return int(vals[0] + vals[-1])
 
-def calculate_total_calibration(input_text):
-    """Calculate sum of calibration values for all lines."""
-    # Split input into lines
+def calculer_etalonnage_total(input_text):
+    """Calculer la somme des valeurs d'étalonnage pour toutes les lignes."""
+    # Diviser l'entrée en lignes
     lines = input_text.strip().split('\n')
     
-    # Calculate sum of calibration values
-    total = sum(extract_calibration_value(line) for line in lines)
+    # Calculer la somme des valeurs d'étalonnage
+    total = sum(extraire_valeur_etalonnage(line) for line in lines)
     
     return total
 
-# Example
-example = """1abc2
-pqr3stu8vwx
-a1b2c3d4e5f
-treb7uchet8"""
-
-print(f"Example sum: {calculate_total_calibration(example_input)}")  # Should output 142
+# Lire le fichier et calculer le résultat
+try:
+    # Ouvrir et lire le fichier 'document.txt'
+    with open('document.txt', 'r') as fichier:
+        contenu = fichier.read()
+        resultat = calculer_etalonnage_total(contenu)
+        print(f"La somme totale des valeurs d'étalonnage est : {resultat}")
+except FileNotFoundError:
+    print("Erreur : Le fichier 'document.txt' n'a pas été trouvé")
+except Exception as e:
+    print(f"Une erreur s'est produite : {str(e)}")
+    
