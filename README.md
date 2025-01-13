@@ -17,7 +17,7 @@ Le script analyse un fichier texte ligne par ligne et :
 
 ```
 .
-├── calibration.py    # Script principal
+├── main.py    # Script principal
 ├── document.txt      # Fichier d'entrée contenant les lignes à analyser
 └── README.md         # Ce fichier
 ```
